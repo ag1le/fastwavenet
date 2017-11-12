@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
-from layers import (_causal_linear, _output_linear, conv1d,
+from wavenet.layers import (_causal_linear, _output_linear, conv1d,
                     dilated_conv1d)
 
 
@@ -43,8 +43,7 @@ class Model(object):
                          activation=None,
                          bias=True)
 
-        costs = tf.nn.sparse_softmax_cross_entropy_with_logits(
-            outputs, targets)
+        costs = tf.nn.sparse_softmax_cross_entropy_with_logits(outputs, targets)
         cost = tf.reduce_mean(costs)
 
         train_step = tf.train.AdamOptimizer(learning_rate=0.001).minimize(cost)
